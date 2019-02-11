@@ -1,10 +1,13 @@
 A Kinder macOS Update
 
 *********************************************
-A workflow for more user intuitive macOS updates.  Allowing the user to defer updates to a move convenient time after updates become available, while allowing for greater assurance that security updates are being applied to IT.
+A workflow for more user intuitive macOS updates.  Allowing the user to defer updates to 
+a move convenient time after updates become available, while allowing for greater assurance
+that security updates are being applied to IT.
 *********************************************
 
-This script is designed to be used with Jamf pro, a Self-Service policy, and a local launchd agent to ensure updates are checked for daily.  It is provided without warranty  
+This script is designed to be used with Jamf pro, a Self-Service policy, and a local 
+launchd agent to ensure updates are checked for daily.  It is provided without warranty  
 
 **Requirements:
 
@@ -15,18 +18,31 @@ This script is designed to be used with Jamf pro, a Self-Service policy, and a l
 
 **Why I built this:
 
-Jamf, at the time of this writing, did not have a good deferral process for Apple OS updates in my opinion.  Not only had apple introduced a new reboot state into their reboot flavors after update that Jamf had not integrated yet, but Jamf's deferrals only allowed a user to defer up to a date, and next moth I would be forced to go out and set up a new deferral date.  These scripts work as 2 halves to a solution. The deferral script runs locally on a daily basis thanks to a launchd daemon.  The deferral script checks if there are any updates and, if updates are found, it nags the user to allow the updates to be installed.  As any IT person can attest though, there needs to be some teeth and the deferral script allows for only a set number of deferrals before enforcing the updates anyways via triggering a Jamf policy.
+Jamf, at the time of this writing, did not have a good deferral process for 
+Apple OS updates in my opinion.  Not only had apple introduced a new reboot state 
+into their reboot flavors after update that Jamf had not integrated yet, but 
+Jamf's deferrals only allowed a user to defer up to a date, and next moth I would 
+be forced to go out and set up a new deferral date.  These scripts work as 2 
+halves to a solution. The deferral script runs locally on a daily basis thanks to
+a launchd daemon.  The deferral script checks if there are any updates and, if updates
+are found, it nags the user to allow the updates to be installed.  As any IT person
+can attest though, there needs to be some teeth and the deferral script allows for
+only a set number of deferrals before enforcing the updates anyways via triggering
+a Jamf policy.
 
 **Configuring the process:
 
 1. Pick a place to store the Deferral script
    a. I choose /Library/Application Support/MyOrgName, but you can pick anywhere that launchd can reach.
 2. Pick a place to store the logs for both the Deferral script and the Update script.
-   a. I choose /Library/Log/MyOrgName, but as long as it is a permanent location that you can remember to look back to when/if something goes wrong then it should work for you.
+   a. I choose /Library/Log/MyOrgName, but as long as it is a permanent location that you can remember
+   to look back to when/if something goes wrong then it should work for you.
 3. Pick/make an icon to be used by the hud windows.
 4. Pick a custom trigger name to input into your deferral script. (I used AppleUpdateScript)
 5. Edit both scripts’ variables section to record your homes for the above. (Logs, Deferral script location, icon location).  Also edit the daemon plist with the location of the deferral script and the time you want the deferral script to fire off daily.
-6. Package the plist, deferral script, and new log folder up all pretty in Composer.  You will need to add a postinstall bash script in composer to load the launchd daemon.  Example one liner here: 
+6. Package the plist, deferral script, and new log folder up all pretty in Composer.  
+   You will need to add a postinstall bash script in composer to load the launchd daemon.  
+   Example one liner below: 
  
    sudo launchctl load /Library/LaunchAgents/com.YourOrg.SoftwareUpdate.plist
 
@@ -35,12 +51,16 @@ Jamf, at the time of this writing, did not have a good deferral process for Appl
    a. Script execution policy visible in Self-Service.
       i. This policy will execute the SoftwareUpdate4.sh script.
       ii. It should have a custom trigger that is input into your deferral script
-      iii. Make sure this policy can be trigger from Self-Service.  Allowing it to be executed from self-service will allow users to start the updates whenever they want (aka when it is more convenient), not just when the nag annoys them mid-morning.
+      iii. Make sure this policy can be trigger from Self-Service.  Allowing it to 
+           be executed from self-service will allow users to start the updates whenever
+           they want (aka when it is more convenient), not just when the nag annoys 
+           them mid-morning.
    b. A policy to push and install the .pkg you packaged earlier in composer.
       i. This policy should be set to run once per computer at check-in.
 
 **Stuff I am still working on:
-   •Getting the script templatized correctly to accept config changes from a profile distribution from Jamf.  The Deferral script is almost there, AppleUpdate4 is not.
+   •Getting the script templatized correctly to accept config changes from a profile 
+    distribution from Jamf.  The deferral script is almost there, AppleUpdate4 is not.
    •Bug testing
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
