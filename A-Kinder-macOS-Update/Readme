@@ -11,10 +11,10 @@ launchd agent to ensure updates are checked for daily.  It is provided without w
 
 **Requirements:
 
-   •Jamf Pro
-   •a logged in user
-   •MacOS Clients 10.13 or later (testing prior to 10.13.4 has not been performed)
-   •	Composer
+   • Jamf Pro
+   • A logged in user
+   • MacOS Clients 10.13 or later (testing prior to 10.13.4 has not been performed)
+   • Composer
 
 **Why I built this:
 
@@ -59,9 +59,9 @@ a Jamf policy.
       i. This policy should be set to run once per computer at check-in.
 
 **Stuff I am still working on:
-   •Getting the script templatized correctly to accept config changes from a profile 
-    distribution from Jamf.  The deferral script is almost there, AppleUpdate4 is not.
-   •Bug testing
+   • Getting the script templatized correctly to accept config changes from a profile 
+     distribution from Jamf.  The deferral script is almost there, AppleUpdate4 is not.
+   • Bug testing
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
