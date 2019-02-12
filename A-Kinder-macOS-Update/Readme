@@ -62,6 +62,7 @@ deferrals before enforcing the updates anyways via triggering a Jamf policy.
    • Getting the script templatized correctly to accept config changes from a profile 
      distributed from Jamf.  The deferral script is almost there, AppleUpdate4 is not.
    • Bug testing
+   • Inserting API work into the deferral script to update JSS that the script is failing.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
