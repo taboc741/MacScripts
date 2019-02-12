@@ -77,6 +77,8 @@ if [ $deferral = "ns" ];then
 	##Calculate remaining deferrals
 	##Check the Plist and find remaining deferrals from prior executions
 	remainDeferrals=`defaults read com.YourOrg.SoftwareUpdate.Deferral remainingDeferrals`
+	##Check that remainDeferrals isn't null (aka pulled back an empty value), if so set it to $default
+	[[ -z $remainDeferrals ]] && remainDeferrals=$default
 	##Check if remaining defferals is $null
 	if [ $remainDeferrals = "" ]; then
 		deferral=$default
@@ -116,7 +118,7 @@ if [ $deferral = 0 ]; then
 	description='A required OS update is available for your Mac.  There are no deferrals left.  You will be prompted again if a reboot is required.'
 	button1="Start Updates"
 	##prompt the user
-	prompt=`"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType hud -title "$title" -heading "$heading" -alignHeading justified -description "$description" -alignDescription left -icon $icon -button1 "$button1" -timeout 14400 -countdown -lockHUD`
+	prompt=`"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType hud -title "$title" -heading "$heading" -alignHeading justified -description "$description" -alignDescription left -icon "$icon" -button1 "$button1" -timeout 14400 -countdown -lockHUD`
 	sendToLog "prompt equaled $prompt. 0=start 1=failed to prompt 2=canceled 239=exited"
 	##Since they have no other option they get the apple update script kicked off.
 	sendToLog "Starting Apple Update Script"
@@ -130,7 +132,7 @@ else
 	button1="Start Updates"
 	button2=`echo "Defer ($deferral)"`
 	##prompt the user
-	prompt=`"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType hud -title "$title" -heading "$heading" -alignHeading justified -description "$description" -alignDescription left -icon $icon -button1 "$button1" -button2 "$button2" -timeout 14400 -countdown -lockHUD -defaultButton 1 -cancleButton 2`
+	prompt=`"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType hud -title "$title" -heading "$heading" -alignHeading justified -description "$description" -alignDescription left -icon "$icon" -button1 "$button1" -button2 "$button2" -timeout 14400 -countdown -lockHUD -defaultButton 1 -cancleButton 2`
 	sendToLog "prompt equaled $prompt. 0=Start Updates 1=failed to prompt 2=User choose defer 239=exited Null=user force quit jamfHelper"
 	if [[ -z $prompt ]];then
 		#User ugly closed the prompt.
