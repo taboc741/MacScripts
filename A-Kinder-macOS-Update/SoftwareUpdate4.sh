@@ -65,7 +65,7 @@ button1="Start Updates"
 ##prompt the user
 prompt=`"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType hud -title "$title" -heading "$heading" -alignHeading justified -description "$description" -alignDescription left -icon "$icon" -button1 "$button1" -timeout 14400 -countdown -lockHUD`
 sendToLog "prompt equaled $prompt. 0=start 1=failed to prompt 2=canceled 239=exited"
-sendToLog `softwareupdate --install -all --force` && sendToLog "Updates Applied"
+softwareupdate --install -all --force && sendToLog "Updates Applied"
 if [[ $restartRequired = "none" && $shutdownRequired = "none" ]]; then
     sendToLog "no reboot required, exiting"
     sendToLog "Script exit"
