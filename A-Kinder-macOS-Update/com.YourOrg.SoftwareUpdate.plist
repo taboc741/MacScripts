@@ -1,6 +1,6 @@
 ########################
 #**This Plist is currently deprecated from the process due to issues with **
-#**Launch Agents not haveing suffcient rights to trigger jamf policies.   **
+#**Launch Agents not haveing sufficient rights to trigger jamf policies.   **
 ########################
 
 <?xml version="1.0" encoding="UTF-8"?>
