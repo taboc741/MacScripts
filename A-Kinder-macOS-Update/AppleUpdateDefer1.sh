@@ -5,7 +5,7 @@
 
 
 ######### Defined Arguements #########
-#$1 ===> arguement for number of deferrals.  Setting the $1 arguement clobbers any prior deferral count
+#$4 ===> arguement for number of deferrals.  Setting the $4 arguement clobbers any prior deferral count
 
 ######### End Defined Arguements #########
 
@@ -68,10 +68,10 @@ if [ ! -e "$icon" ]; then
 fi
 
 ##Determine how many deferrals to give the user this go around
-if [ -z "$1" ]; then
+if [ -z "$4" ]; then
 	deferral="ns"
 else
-	deferral="$1"
+	deferral="$4"
 fi
 if [ $deferral = "ns" ];then
 	##Calculate remaining deferrals
