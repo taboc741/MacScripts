@@ -1,7 +1,6 @@
 #!/bin/sh
 ##  AppleUpdateDefer1.sh
-##  Created by Chris Couch (ccouch) on 1/29/19
-##  Last Edited 2/10/2019
+##  Created by Chris Couch (ccouch)
 
 
 ######### Defined Arguements #########
