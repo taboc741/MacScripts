@@ -41,7 +41,7 @@ sendToLog "OS version is $OSVersion"
 sendToLog "Logged in user is $LoggedInUser"
 
 ## If there are no system updates, quit
-if [[ $updatesNoRestart = "none" && $restartRequired = "none" && $shutdownRequired = "none" ]]; then
+if [[ $updatesNoRestart = "none" && $restartRequired = "none" && $shutDownRequired = "none" ]]; then
     sendToLog "No updates at this time, updating Jamf inventory"
     jamf policy -trigger recon
     sendToLog "Inventory update complete, script exit."
@@ -67,7 +67,7 @@ button1="Start Updates"
 prompt=`"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper" -windowType hud -title "$title" -heading "$heading" -alignHeading justified -description "$description" -alignDescription left -icon "$icon" -button1 "$button1" -timeout 14400 -countdown -lockHUD`
 sendToLog "prompt equaled $prompt. 0=start 1=failed to prompt 2=canceled 239=exited"
 softwareupdate --install --all --force && sendToLog "Updates Applied"
-if [[ $restartRequired = "none" && $shutdownRequired = "none" ]]; then
+if [[ $restartRequired = "none" && $shutDownRequired = "none" ]]; then
     sendToLog "no reboot required, exiting"
     sendToLog "Script exit"
     exit 0
