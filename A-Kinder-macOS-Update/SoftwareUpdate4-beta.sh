@@ -36,7 +36,10 @@ restartRequired=`echo $updates | grep restart | grep -v '\*' | cut -d , -f 1`
 ################ End Variable Set ################
 sendToLog "OS version is $OSVersion"
 sendToLog "Logged in user is $LoggedInUser"
-
+##Check to make sure $icon path is real
+if [ ! -e "$icon" ]; then
+	icon="/System/Library/CoreServices/Install Command Line Developer Tools.app/Contents/Resources/SoftwareUpdate.icns"
+fi
 ## If there are no system updates, quit
 if [[ $updatesNoRestart = "none" && $restartRequired = "none" ]]; then
     sendToLog "No updates at this time, updating Jamf inventory"
