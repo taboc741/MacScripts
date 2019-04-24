@@ -99,7 +99,8 @@ sendToLog="Updates equaled
 "
 if [[ $updatesPending = "none" ]]; then
 	sendToLog "No updates pending. Setting plist remainingDeferral to $default.  It was $remainDeferrals.  Exiting"
-	#defaults write com.YourOrg.SoftwareUpdate.Deferral remainingDeferrals $default
+	defaults write com.YourOrg.SoftwareUpdate.Deferral remainingDeferrals $default
+	jamf recon
 	exit 0
 else
 	echo "Updates found"
@@ -122,6 +123,7 @@ if [ $deferral = 0 ]; then
 	##Since they have no other option they get the apple update script kicked off.
 	sendToLog "Starting Apple Update Script"
 	jamf policy -trigger $trigger &
+        defaults write com.YourOrg.SoftwareUpdate.Deferral remainingDeferrals $default
 	sendToLog "update script triggered.  exiting."
 	exit 0
 else
@@ -142,6 +144,7 @@ else
 		##User elected to start updates or the timer ran out after 4 hours.  Kicking off Apple update script
 		sendToLog "Starting Apple Update Script via Jamf trigger"
 		jamf policy -trigger $trigger
+                defaults write com.YourOrg.SoftwareUpdate.Deferral remainingDeferrals $default
 		exit 0
 	elif [[ $prompt = 2 || $prompt = 239 ]]; then
 		#User either ugly closed the prompt, or choose the deferral option.
@@ -152,6 +155,6 @@ else
 		##Something unexpected happened.  I don't really know how the user got here, but for fear of breaking things or abruptly rebooting computers we will set a flag for the mac in Jamf saying something went wrong.
 		sendToLog "Something went wrong, the prompt equalled $prompt"
 		##Insert API work here at a later data to update JSS that the script is failing.
-		exit 0
+		exit 1
 	fi
 fi
