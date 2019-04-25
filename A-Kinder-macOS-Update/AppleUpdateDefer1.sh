@@ -78,8 +78,8 @@ if [ $deferral = "ns" ];then
 	remainDeferrals=`defaults read com.YourOrg.SoftwareUpdate.Deferral remainingDeferrals`
 	##Check that remainDeferrals isn't null (aka pulled back an empty value), if so set it to $default
 	[[ -z $remainDeferrals ]] && remainDeferrals=$default
-	##Check if $remainDeferrals is $null or 0
-	if [ $remainDeferrals = "" -o $remainDeferrals -eq 0]; then
+	##Check if $remainDeferrals is $null
+	if [ $remainDeferrals = ""]; then
 		deferral=$default
 	else
 		if [ $remainDeferrals -lt $default ]; then
