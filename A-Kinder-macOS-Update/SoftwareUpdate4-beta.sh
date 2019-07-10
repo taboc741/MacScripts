@@ -113,6 +113,6 @@ if [[ $shutDownRequired != "none" ]]; then
 else
     sendToLog "starting reboot"
     ## using the Jamf restart process because it increases the odds of Jamf receiveing the logs back from the completed policy.
-    jamf reboot -minutes 1 -background -startTimerImmediately & sendToLog "Script exit"
+    shutdown -r +2 & sendToLog "Script exit"
     exit 0
 fi
