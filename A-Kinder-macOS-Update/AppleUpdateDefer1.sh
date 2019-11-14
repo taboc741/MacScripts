@@ -79,7 +79,7 @@ if [ $deferral = "ns" ];then
 	##Check that remainDeferrals isn't null (aka pulled back an empty value), if so set it to $default
 	[[ -z $remainDeferrals ]] && remainDeferrals=$default
 	##Check if $remainDeferrals is $null
-	if [ $remainDeferrals = ""]; then
+	if ![ -n "$remainDeferrals" ]; then
 		deferral=$default
 	else
 		if [ $remainDeferrals -lt $default ]; then
@@ -92,7 +92,7 @@ fi
 
 ##Check if there are any pending OS updates. If not quit to run another day.
 updates=`softwareupdate -l`
-updatesPending=`echo $updates | grep recommended`
+updatesPending=`echo $updates | grep -i recommended`
 [[ -z $updatesPending ]] && updatesPending="none"
 sendToLog="Updates equaled 
 	$updates
