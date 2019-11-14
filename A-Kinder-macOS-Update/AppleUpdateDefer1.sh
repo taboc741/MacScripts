@@ -69,8 +69,10 @@ fi
 ##Determine how many deferrals to give the user this go around
 if [ -z "$4" ]; then
 	deferral="ns"
+	defaults write com.YourOrg.SoftwareUpdate.Deferral defaultDeferrals $default
 else
 	deferral="$4"
+	defaults write com.YourOrg.SoftwareUpdate.Deferral defaultDeferrals $4
 fi
 if [ $deferral = "ns" ];then
 	##Calculate remaining deferrals
