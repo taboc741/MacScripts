@@ -16,6 +16,8 @@ launchd agent to ensure updates are checked for daily.
    • MacOS Clients 10.14 or later (testing prior to 10.14.6 has not been performed)
    • Composer
 
+**** Important Note: This script does not do major version releases.  No jumping form 10.14 to 10.15.  It only does minor updates and security updates.
+
 **Why I built this:
 
 Jamf, at the time of this writing, did not have a good deferral process for 
