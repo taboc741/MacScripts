@@ -6,8 +6,7 @@ a more convenient time after updates become available, while allowing for greate
 that security updates are being applied to IT.
 *******************************************************************************************
 
-This script is designed to be used with Jamf pro, a Self-Service policy, and a local 
-launchd agent to ensure updates are checked for daily.
+This script is designed to be used with Jamf pro and uses scripts and policies to make this activity happen reliably.
 
 **Requirements:
 
