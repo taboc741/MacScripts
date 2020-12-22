@@ -13,7 +13,7 @@ launchd agent to ensure updates are checked for daily.
 
    • Jamf Pro
    • A logged in user
-   • MacOS Clients 10.13 or later (testing prior to 10.13.4 has not been performed)
+   • MacOS Clients 10.14 or later (testing prior to 10.14.6 has not been performed)
    • Composer
 
 **Why I built this:
