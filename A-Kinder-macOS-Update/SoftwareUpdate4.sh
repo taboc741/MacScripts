@@ -4,7 +4,7 @@
 ##### Special thanks to mm2270, cstout, nvandam from JamfNation for helping me with some testing and code suggestions to problems I couldn't solve on my own.#####
 
 ######### Create settings for logging and create log file #########
-## Path to Log file. Map your Own Log Path.  Do not use /tmp as it is emptied on boot.
+## Path to Log file. Map your own log path.  Do not use /tmp as it is emptied on boot.
 LogPath=/Library/Logs/YourOrg
 ##Verify LogPath exists
 if [ ! -d "$LogPath" ]; then
