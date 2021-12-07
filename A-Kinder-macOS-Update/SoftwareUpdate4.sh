@@ -28,9 +28,9 @@ OSVersion=`sw_vers -productVersion`
 LoggedInUser=`who | grep console | awk '{print $1}'`
 ## Check for updates that require a restart and ones that do not.
 updates=`softwareupdate -l`
-updatesNoRestart=`echo $updates | grep recommended | grep -v restart`
+updatesNoRestart=`echo $updates | grep --ignore-case recommended | grep --ignore-case -v restart`
 [[ -z $updatesNoRestart ]] && updatesNoRestart="none"
-restartRequired=`echo $updates | grep restart | grep -v '\*' | cut -d , -f 1`
+restartRequired=`echo $updates | grep --ignore-case restart | grep -v '\*' | cut -d , -f 1`
 [[ -z $restartRequired ]] && restartRequired="none"
 
 ################ End Variable Set ################
